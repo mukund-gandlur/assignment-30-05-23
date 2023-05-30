@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model cinema {
+  id           String  @id @db.Uuid
+  actionUrl    String
+  status       Int?
+  url          String
+  urlForMobile String
+  urlForTab    String
+  sortNumber   Int?
+  title        String?
+  label        String?
+
+  @@index([id], map: "idx_sponsored_sponsoredid")
+}
