@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { fetchCinemas } from './services';
+import { createCinema, fetchCinemas } from './services';
 
 /**
  * @export
@@ -8,7 +8,7 @@ import { fetchCinemas } from './services';
 export class CinemaController {
 
   /**
-   * Demo Action
+   * Get all Cinemas
    *
    * @param {Request} req
    * @param {Response} res
@@ -19,14 +19,14 @@ export class CinemaController {
   }
 
   /**
-   * Demo Action
+   * Create Cinema
    *
    * @param {Request} req
    * @param {Response} res
    * @param {NextFunction} next
    */
   postCreateCinema(req: Request, res: Response, _next: NextFunction): void {
-    res.status(200).send(req.body);
+    res.status(200).send(createCinema(req.body));
   }
 
 }

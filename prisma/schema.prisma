@@ -34,8 +34,8 @@ model show {
   id             String @id @db.Uuid
   name           String
   pricePerTicket Int
-  startTime      String
-  endTime        String
+  startTime      String?
+  endTime        String?
   status         Int    @default(1)
   cinemaId       String @db.Uuid
 
