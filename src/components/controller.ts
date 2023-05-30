@@ -13,7 +13,7 @@ export class CinemaController {
    * @param {Response} res
    * @param {NextFunction} next
    */
-  getCinema(req: Request, res: Response, next: NextFunction): void {
+  getCinema(_req: Request, res: Response, _next: NextFunction): void {
     res.status(200).send({ say: 'Hello Demo Action.' });
   }
 
@@ -24,7 +24,7 @@ export class CinemaController {
    * @param {Response} res
    * @param {NextFunction} next
    */
-  postCreateCinema(req: Request, res: Response, next: NextFunction): void {
+  postCreateCinema(req: Request, res: Response, _next: NextFunction): void {
     res.status(200).send(req.body);
   }
 

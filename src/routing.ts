@@ -1,6 +1,6 @@
 import {  Router } from 'express';
 import * as express from 'express';
-import { CinemaRouting } from 'components/routing';
+import { CinemaRouting } from './components/routing';
 
 
 export function appRouting(): Router {
@@ -8,11 +8,8 @@ export function appRouting(): Router {
   router = express.Router();
 
 
-  let helloRouting: CinemaRouting = new CinemaRouting(router);
-  helloRouting.registerRouting();
-
-
-  // REGISTER ROUTING OF COMPONENTS HERE END ------------------------------------
+  let cinemaRouting: CinemaRouting = new CinemaRouting(router);
+  cinemaRouting.registerRouting();
 
   return router;
 }

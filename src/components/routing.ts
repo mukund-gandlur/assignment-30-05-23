@@ -1,4 +1,4 @@
-import { BaseRouting } from 'base-routing';
+import { BaseRouting } from './../base-routing';
 import { NextFunction, Request, Response } from 'express';
 
 import { CinemaController } from './controller';
