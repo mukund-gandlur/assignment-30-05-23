@@ -24,6 +24,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.22",
     "prisma": "^4.14.1",
+    "prisma-client": "^0.0.0",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "uuid": "^9.0.0"

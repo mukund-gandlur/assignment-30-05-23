@@ -14,8 +14,8 @@ model user {
   status      Int      @default(1)
   ticket      ticket[]
 
-  createdAt       DateTime? @default(now()) @db.Timestamptz(6)
-  updatedAt       DateTime? @default(now()) @db.Timestamptz(6)
+  createdAt DateTime? @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime? @default(now()) @db.Timestamptz(6)
 }
 
 model cinema {
@@ -25,23 +25,23 @@ model cinema {
   status        Int    @default(1)
   show          show[]
 
-  createdAt       DateTime? @default(now()) @db.Timestamptz(6)
-  updatedAt       DateTime? @default(now()) @db.Timestamptz(6)
+  createdAt DateTime? @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime? @default(now()) @db.Timestamptz(6)
+
   @@index([id], map: "idx_cinema_cinemaid")
 }
 
 model show {
-  id             String @id @db.Uuid
+  id             String  @id @db.Uuid
   name           String
   pricePerTicket Int
   startTime      String?
   endTime        String?
-  status         Int    @default(1)
-  cinemaId       String @db.Uuid
+  status         Int     @default(1)
+  cinemaId       String  @db.Uuid
 
-
-  createdAt       DateTime? @default(now()) @db.Timestamptz(6)
-  updatedAt       DateTime? @default(now()) @db.Timestamptz(6)
+  createdAt DateTime?   @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime?   @default(now()) @db.Timestamptz(6)
   cinema    cinema?     @relation(fields: [cinemaId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "show_cinema_cinemaid_foreign")
   ticket    ticket[]
   show_seat show_seat[]
@@ -55,24 +55,28 @@ model show_seat {
   status Int    @default(0)
   showId String @db.Uuid
 
+  createdAt DateTime? @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime? @default(now()) @db.Timestamptz(6)
+  show      show?     @relation(fields: [showId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_show_showid_foreign")
+  ticket    ticket[]
 
-  createdAt       DateTime? @default(now()) @db.Timestamptz(6)
-  updatedAt       DateTime? @default(now()) @db.Timestamptz(6)
-  show show? @relation(fields: [showId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_show_showid_foreign")
+  @@unique([showId, seatId], map: "seatid_showid_unique")
 }
 
 model ticket {
-  id              String  @id @db.Uuid
-  amount          String
+  id              String     @id @db.Uuid
+  amount          Int
   numberOfTickets Int
-  status          Int     @default(1)
-  show            show?   @relation(fields: [showId], references: [id])
-  showId          String? @db.Uuid
-  userId          String  @db.Uuid
-  user            user?   @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_user_userid_foreign")
+  status          Int        @default(1)
+  showSeatId      String     @db.Uuid
+  userId          String     @db.Uuid
+  user            user?      @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_user_userid_foreign")
+  show_seat       show_seat? @relation(fields: [showSeatId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_show_seat_id_foreign")
 
+  createdAt DateTime? @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime? @default(now()) @db.Timestamptz(6)
+  show      show?     @relation(fields: [showId], references: [id])
+  showId    String?   @db.Uuid
 
-  createdAt       DateTime? @default(now()) @db.Timestamptz(6)
-  updatedAt       DateTime? @default(now()) @db.Timestamptz(6)
   @@index([id], map: "idx_ticket_ticketid")
 }

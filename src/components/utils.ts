@@ -19,3 +19,16 @@ export function generateSeats(showId: string, numberOfSeats:number): Show[]{
 
   return seats;
 }
+
+export function findPairs(sequence) {
+    const pairs:any = [];
+  
+    for (let i = 0; i < sequence.length; i++) {
+      for (let j = i + 1; j < sequence.length; j++) {
+        const pair = [sequence[i], sequence[j]];
+        pairs.push(pair);
+      }
+    }
+  
+    return pairs;
+}

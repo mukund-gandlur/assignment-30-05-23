@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { createCinema, fetchCinemas } from './services';
+import { createCinema, fetchCinemas, purchaseCoupleTicket, purchaseSingleTicket } from './services';
 
 /**
  * @export
@@ -25,8 +25,31 @@ export class CinemaController {
    * @param {Response} res
    * @param {NextFunction} next
    */
-  postCreateCinema(req: Request, res: Response, _next: NextFunction): void {
-    res.status(200).send(createCinema(req.body));
+  async postCreateCinema(req: Request, res: Response, _next: NextFunction): Promise<void> {
+    res.status(200).send(await createCinema(req.body));
   }
 
+
+  /**
+   * Purchase Ticket
+   *
+   * @param {Request} req
+   * @param {Response} res
+   * @param {NextFunction} next
+   */
+   async postPurchaseSingleTicket(req: Request, res: Response, _next: NextFunction): Promise<void> {
+    res.status(200).send(await purchaseSingleTicket(req.body));
+  }
+
+
+  /**
+   * Purchase Couple Ticket
+   *
+   * @param {Request} req
+   * @param {Response} res
+   * @param {NextFunction} next
+   */
+   async postPurchaseCoupleTicket(req: Request, res: Response, _next: NextFunction): Promise<void> {
+    res.status(200).send(await purchaseCoupleTicket(req.body));
+  }
 }

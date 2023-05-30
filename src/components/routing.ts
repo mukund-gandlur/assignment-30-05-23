@@ -19,6 +19,14 @@ export class CinemaRouting extends BaseRouting {
     this.router.post('/cinema', (req: Request, res: Response, next: NextFunction) => {
       controller.postCreateCinema(req, res, next);
     });
+
+    this.router.post('/ticket/single', (req: Request, res: Response, next: NextFunction) => {
+      controller.postPurchaseSingleTicket(req, res, next);
+    });
+
+    this.router.post('/ticket/couple', (req: Request, res: Response, next: NextFunction) => {
+      controller.postPurchaseCoupleTicket(req, res, next);
+    });
   }
 
 }
