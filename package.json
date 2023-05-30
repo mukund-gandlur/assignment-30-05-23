@@ -1,0 +1,21 @@
+{
+  "name": "cinema-manager",
+  "version": "1.0.0",
+  "description": "This is an application that works as the core cinema manager",
+  "main": "server.ts",
+  "license": "MIT",
+  "devDependencies": {
+    "@tsconfig/node17": "^1.0.3",
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.2.5",
+    "typescript": "^5.0.4"
+  },
+  "scripts": {
+    "start": "NODE_PATH=$NODE_PATH:./src nodemon --exec babel-node src/index.ts",
+    "tsc": "tsc --traceResolution",
+    "dev": "NODE_PATH=$NODE_PATH:./src ts-node-dev --respawn --transpile-only ./src/server.ts"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.1"
+  }
+}
