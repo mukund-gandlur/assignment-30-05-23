@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { fetchCinemas } from './services';
 
 /**
  * @export
@@ -13,8 +14,8 @@ export class CinemaController {
    * @param {Response} res
    * @param {NextFunction} next
    */
-  getCinema(_req: Request, res: Response, _next: NextFunction): void {
-    res.status(200).send({ say: 'Hello Demo Action.' });
+  async getCinema(_req: Request, res: Response, _next: NextFunction): Promise<void> {
+    res.status(200).send(JSON.stringify(await fetchCinemas()));
   }
 
   /**
