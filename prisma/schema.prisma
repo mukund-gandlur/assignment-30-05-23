@@ -9,14 +9,7 @@ datasource db {
 
 model cinema {
   id           String  @id @db.Uuid
-  actionUrl    String
-  status       Int?
-  url          String
-  urlForMobile String
-  urlForTab    String
-  sortNumber   Int?
-  title        String?
-  label        String?
 
-  @@index([id], map: "idx_sponsored_sponsoredid")
+
+  @@index([id], map: "idx_cinema_cinemaid")
 }
